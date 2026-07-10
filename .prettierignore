@@ -1,0 +1,13 @@
+node_modules/
+.expo/
+dist/
+web-build/
+coverage/
+ios/
+android/
+expo-env.d.ts
+package-lock.json
+.claude/
+
+# Prose docs are hand-authored (tables, mermaid placeholders); not reflowed by Prettier.
+*.md
