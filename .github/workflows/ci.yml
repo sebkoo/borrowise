@@ -28,6 +28,20 @@ jobs:
       - name: Unit tests
         run: npm run test:coverage
 
+      - name: Live smoke — FiscalData avg_interest_rates
+        run: |
+          RESPONSE=$(curl -sf "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?sort=-record_date&page[size]=1")
+          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) $RESPONSE"
+          echo "$RESPONSE" | node -e '
+            const payload = JSON.parse(require("fs").readFileSync(0, "utf8"));
+            const record = payload.data && payload.data[0];
+            if (!record || typeof record.record_date !== "string" || !Number.isFinite(Number(record.avg_interest_rate_amt))) {
+              console.error("Unexpected FiscalData payload shape");
+              process.exit(1);
+            }
+            console.log(`Live smoke OK: ${record.security_desc} avg rate ${record.avg_interest_rate_amt}% as of ${record.record_date}`);
+          '
+
   e2e-smoke:
     runs-on: macos-15
     steps:

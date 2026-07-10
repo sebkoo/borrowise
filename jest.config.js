@@ -36,6 +36,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     'core/**/*.{ts,tsx}',
+    'integration/**/*.{ts,tsx}',
     '!**/*.d.ts',
     // Composition root: no isolated unit-test value, exercised by Maestro E2E (commit #9).
     '!src/app/_layout.tsx',
