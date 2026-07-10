@@ -1,0 +1,16 @@
+appId: com.sebkoo.borrowise
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    text: "Principal amount in dollars"
+- inputText: "10000"
+- tapOn:
+    text: "Annual percentage rate"
+- inputText: "5"
+- tapOn:
+    text: "Loan term in months"
+- inputText: "12"
+- tapOn: "Add a loan"
+- assertVisible: "$856.07"
+- assertVisible: "$272.89"

@@ -27,3 +27,91 @@ jobs:
 
       - name: Unit tests
         run: npm run test:coverage
+
+  e2e-smoke:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Prebuild iOS project (CNG)
+        run: npx expo prebuild --platform ios
+
+      - name: Build Debug app for the simulator
+        run: |
+          xcodebuild \
+            -workspace ios/Borrowise.xcworkspace \
+            -scheme Borrowise \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination "generic/platform=iOS Simulator" \
+            -derivedDataPath ios/build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Boot simulator and install the app
+        run: |
+          DEVICE_NAME=$(xcrun simctl list devices available -j \
+            | node -e "const d=JSON.parse(require('fs').readFileSync(0));const rt=Object.keys(d.devices).sort().reverse().find(k=>k.includes('iOS')&&d.devices[k].some(x=>x.name.includes('iPhone')));console.log(d.devices[rt].find(x=>x.name.includes('iPhone')).name)")
+          echo "Using simulator: $DEVICE_NAME"
+          xcrun simctl boot "$DEVICE_NAME"
+          xcrun simctl install booted ios/build/Build/Products/Debug-iphonesimulator/Borrowise.app
+
+      - name: Start Metro in the background
+        run: |
+          # Deliberately no -i/--ios flag: that flag makes expo start auto-open the
+          # app itself via its own client-selection heuristic, which we observed
+          # locally can race and open Expo Go instead of our dev client. We start
+          # Metro alone and open the app ourselves in the next step instead.
+          npx expo start --localhost > metro.log 2>&1 &
+          echo $! > metro.pid
+          # Bounded poll per CLAUDE.md: check every 5s, 2-minute ceiling.
+          for i in $(seq 1 24); do
+            if curl -s http://localhost:8081/status | grep -q "packager-status:running"; then
+              echo "Metro is up"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Metro did not become ready in time"
+          cat metro.log
+          exit 1
+
+      - name: Open the app pointed at Metro
+        run: |
+          xcrun simctl openurl booted "com.sebkoo.borrowise://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+          sleep 5
+
+      - name: Install Maestro
+        run: |
+          curl -Ls "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+
+      - name: Run E2E smoke flow
+        run: |
+          # Isolation/retry safety net: the flow itself is stable once the app is
+          # launched via an explicit deep link (see the Metro step above for why),
+          # but retry a couple of times anyway rather than failing the build on a
+          # single simulator/CI hiccup.
+          for attempt in 1 2 3; do
+            if maestro test .maestro/calc.yaml; then
+              exit 0
+            fi
+            echo "Attempt $attempt failed, retrying..."
+            sleep 5
+          done
+          exit 1
+
+      - name: Upload Maestro debug artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maestro-debug-output
+          path: ~/.maestro/tests
+          if-no-files-found: ignore
