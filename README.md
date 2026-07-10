@@ -12,8 +12,7 @@ Borrowise is **not** a lender and **not** an advisor. It is an education and sim
 > Borrowise does not originate, broker, or recommend loans. Always consult a qualified
 > professional before making borrowing decisions.
 
-<!-- Demo GIF slot — added with the first UI commit (see docs/media/). -->
-<!-- ![Borrowise demo](docs/media/us-02-calculator.gif) -->
+![Borrowise demo](docs/media/us-02-add-loan.gif)
 
 ---
 
@@ -36,7 +35,7 @@ open source — a working reference for a modern React Native + native-Swift cod
 ## Features (roadmap)
 
 - [ ] **US-01** First-launch onboarding + not-financial-advice disclosure + local profile
-- [ ] **US-02** Add a loan → instant monthly payment & total interest (offline, pure core)
+- [x] **US-02** Add a loan → instant monthly payment & total interest (offline, pure core)
 - [ ] **US-03** Amortization schedule (table + chart, extra-payment scenarios)
 - [ ] **US-04** Market-rate dashboard (U.S. Treasury FiscalData — no-auth API)
 - [ ] **US-05** Benchmark comparison vs your APR (FRED — apiKey API)
@@ -54,7 +53,7 @@ open source — a working reference for a modern React Native + native-Swift cod
 
 | Story | Preview |
 |-------|---------|
-| US-02 Calculator | _media pending_ |
+| US-02 Calculator | ![US-02 demo](docs/media/us-02-add-loan.gif) |
 | US-03 Schedule | _media pending_ |
 | US-04 Dashboard | _media pending_ |
 
