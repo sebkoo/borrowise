@@ -38,8 +38,9 @@ module.exports = {
     'core/**/*.{ts,tsx}',
     'integration/**/*.{ts,tsx}',
     '!**/*.d.ts',
-    // Composition root: no isolated unit-test value, exercised by Maestro E2E (commit #9).
+    // Composition roots: no isolated unit-test value, exercised by Maestro E2E (commit #9).
     '!src/app/_layout.tsx',
+    '!src/app/\\(tabs\\)/_layout.tsx',
     // Platform-specific resolution requires a multi-project jest-expo config (ios/android/web
     // projects) to exercise both variants; deferred until platform-differentiated UI ships.
     '!src/hooks/use-color-scheme.ts',

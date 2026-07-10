@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LoanCalculatorForm } from '@/components/loan-calculator-form';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { MaxContentWidth, Spacing } from '@/constants/theme';
+import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 
 export default function HomeScreen() {
   return (
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
   scrollContent: {
     alignItems: 'center',
     paddingHorizontal: Spacing.four,
-    paddingVertical: Spacing.five,
+    paddingTop: Spacing.five,
+    paddingBottom: Spacing.five + BottomTabInset,
     gap: Spacing.three,
     maxWidth: MaxContentWidth,
     alignSelf: 'center',

@@ -37,8 +37,8 @@ open source — a working reference for a modern React Native + native-Swift cod
 - [ ] **US-01** First-launch onboarding + not-financial-advice disclosure + local profile
 - [x] **US-02** Add a loan → instant monthly payment & total interest (offline, pure core)
 - [ ] **US-03** Amortization schedule (table + chart, extra-payment scenarios)
-- [ ] **US-04** Market-rate dashboard (U.S. Treasury FiscalData — no-auth API)
-- [ ] **US-05** Benchmark comparison vs your APR (FRED — apiKey API)
+- [x] **US-04** Market-rate dashboard (U.S. Treasury FiscalData — no-auth API)
+- [x] **US-05** Benchmark comparison vs your APR (FRED — apiKey API)
 - [ ] **US-06** Refinance break-even calculator
 - [ ] **US-07** Sign-in & sync (Google OAuth 2.0 + PKCE; Drive appDataFolder backup)
 - [ ] **US-08** Home-screen widget (Swift / SwiftUI + WidgetKit)
@@ -55,7 +55,8 @@ open source — a working reference for a modern React Native + native-Swift cod
 |-------|---------|
 | US-02 Calculator | ![US-02 demo](docs/media/us-02-add-loan.gif) |
 | US-03 Schedule | _media pending_ |
-| US-04 Dashboard | _media pending_ |
+| US-04 Dashboard | ![US-04 demo](docs/media/us-04-dashboard.gif) |
+| US-05 Benchmark comparison | ![US-05 demo](docs/media/us-05-benchmark.gif) |
 
 _Each row is filled with a `docs/media/us-XX-<slug>.gif` as its UI commit lands._
 

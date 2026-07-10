@@ -1,0 +1,11 @@
+appId: com.sebkoo.borrowise
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    text: "Open"
+    optional: true
+- tapOn: "Dashboard.*"
+- extendedWaitUntil:
+    visible: ".*Treasury Bills.*"
+    timeout: 15000

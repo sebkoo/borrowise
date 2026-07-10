@@ -1,0 +1,17 @@
+appId: com.sebkoo.borrowise
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    text: "Open"
+    optional: true
+- tapOn: "Dashboard.*"
+- extendedWaitUntil:
+    visible: ".*FRED 24-month personal loan average.*"
+    timeout: 15000
+- tapOn:
+    text: "Your APR for comparison"
+- inputText: "14"
+- extendedWaitUntil:
+    visible: ".*pp above the FRED 24-month personal loan average.*"
+    timeout: 5000
