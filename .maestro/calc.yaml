@@ -3,6 +3,12 @@ appId: com.sebkoo.borrowise
 - launchApp:
     clearState: true
 - tapOn:
+    text: "Open"
+    optional: true
+- extendedWaitUntil:
+    visible: "Principal amount in dollars"
+    timeout: 30000
+- tapOn:
     text: "Principal amount in dollars"
 - inputText: "10000"
 - tapOn:
