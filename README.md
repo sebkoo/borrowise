@@ -17,8 +17,8 @@ Borrowise is **not** a lender and **not** an advisor. It is an education and sim
 
 ---
 
-<!-- Badges go live as the pipeline lands: CI + coverage (commit #6), release (commit #29). -->
-![CI](https://img.shields.io/badge/CI-pending-lightgrey)
+<!-- Coverage badge goes live once a coverage-reporting service is wired up; release badge at commit #29. -->
+[![CI](https://github.com/sebkoo/borrowise/actions/workflows/ci.yml/badge.svg)](https://github.com/sebkoo/borrowise/actions/workflows/ci.yml)
 ![Coverage](https://img.shields.io/badge/coverage-pending-lightgrey)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 ![Release](https://img.shields.io/badge/release-pre--alpha-lightgrey)
