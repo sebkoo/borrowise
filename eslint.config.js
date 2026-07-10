@@ -19,4 +19,13 @@ module.exports = defineConfig([
       globals: globals.node,
     },
   },
+  {
+    // jest.setup.js calls jest.mock() at module scope, outside any *.test.*
+    // file, so it needs the jest global that eslint-config-expo's test-file
+    // matching doesn't grant it.
+    files: ['jest.setup.js'],
+    languageOptions: {
+      globals: globals.jest,
+    },
+  },
 ]);
