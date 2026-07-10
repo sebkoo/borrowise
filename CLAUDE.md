@@ -12,6 +12,10 @@ audience: hiring teams at fintech mobile orgs. Quality bar: "Insist on High Stan
 - Architecture layering: Screen/Component → Hook(Service) → Domain(core, pure) → API Client(integration). Do not skip layers.
 - English only — all code, docs, commits, and session dialogue. Include "Educational tool — not financial advice" where relevant.
 - Never use the word "Upstart" in app name, bundle id, or marketing copy.
+- Never wait open-endedly on a long-running shell command (native builds, simulator boots,
+  installs). Poll on a bounded schedule — check every 2 minutes — with a hard 20-minute
+  ceiling; then surface the log tail and decide (retry, diagnose, or ask) rather than
+  continuing to wait.
 
 ## Definition of Done (per commit)
 typecheck ✓ lint ✓ tests ✓ (media ✓ if UI) README/ADR updated ✓
