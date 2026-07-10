@@ -95,6 +95,19 @@ Test-first, always. Coverage gates: **`core/` ≥ 90%**, **overall ≥ 80%**.
 
 CI retries flaky tests in isolation before failing the build.
 
+## Development workflow — AI-assisted, human-owned
+
+Borrowise is built with an AI pair (Claude Code) operated under four engineering
+disciplines: **prompt engineering** (each session runs on a written contract: scoped
+commit ledger rows, TDD red-first requirements, STOP rules), **context engineering**
+(a versioned plan and [CLAUDE.md](./CLAUDE.md) as the single source of truth across
+sessions), **harness engineering** (commit ledger, coverage gates, commitlint hooks,
+tiered command approvals — the tooling physically rejects untested or malformed work),
+and **loop engineering** (incidents become committed rules; see the bounded-polling
+rule's own commit). Every line is reviewed, tested, and owned by a human.
+The full write-up, with evidence links into this repo's history:
+[docs/engineering/ai-workflow.md](./docs/engineering/ai-workflow.md).
+
 ## Getting Started
 
 _Coming with the Expo scaffold (commit #2)._
