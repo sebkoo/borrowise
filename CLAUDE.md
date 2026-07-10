@@ -16,6 +16,8 @@ audience: hiring teams at fintech mobile orgs. Quality bar: "Insist on High Stan
   installs). Poll on a bounded schedule — check every 2 minutes — with a hard 20-minute
   ceiling; then surface the log tail and decide (retry, diagnose, or ask) rather than
   continuing to wait.
+- Never re-run a failed command (or a near-duplicate) without stating a NEW hypothesis first.
+  Two same-hypothesis failures = stop, summarize evidence, and either pivot or escalate.
 
 ## Definition of Done (per commit)
 typecheck ✓ lint ✓ tests ✓ (media ✓ if UI) README/ADR updated ✓
