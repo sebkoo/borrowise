@@ -33,7 +33,7 @@ export class FiscalDataError extends Error {
 
 const ENDPOINT =
   'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates' +
-  '?sort=-record_date&page[size]=1';
+  '?sort=-record_date&page%5Bsize%5D=1';
 
 export async function fetchAverageInterestRate(
   cache?: RateCache,

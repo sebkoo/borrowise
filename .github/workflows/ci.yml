@@ -30,7 +30,7 @@ jobs:
 
       - name: Live smoke — FiscalData avg_interest_rates
         run: |
-          RESPONSE=$(curl -sf "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?sort=-record_date&page[size]=1")
+          RESPONSE=$(curl -sf "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?sort=-record_date&page%5Bsize%5D=1")
           echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) $RESPONSE"
           echo "$RESPONSE" | node -e '
             const payload = JSON.parse(require("fs").readFileSync(0, "utf8"));
